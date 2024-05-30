@@ -17,9 +17,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val makeCallBtn = findViewById<Button>(R.id.makeCallBtn)
         makeCallBtn.setOnClickListener {
-            PermissionX.request(this, android.Manifest.permission.CALL_PHONE) { allGranted, deniedList ->
+            PermissionX.request(this, android.Manifest.permission.CALL_PHONE,
+                android.Manifest.permission.READ_CONTACTS) { allGranted, deniedList ->
                 if (allGranted) {
-                    call()
+                    Toast.makeText(this, "All permissions are granted",
+                        Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "You denied $deniedList", Toast.LENGTH_SHORT).show()
                 }
